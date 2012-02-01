@@ -1,6 +1,7 @@
-#include <iostream>
+#ifndef __STRING_BINARY_STREAM_HPP_4901249801481_
+#define __STRING_BINARY_STREAM_HPP_4901249801481_
+
 #include "binary_stream.hpp"
-#include <string>
 
 struct StringBinaryOStream : public BinaryOstream {
 	virtual ~StringBinaryOStream() {
@@ -23,11 +24,4 @@ struct StringBinaryIStream : public BinaryIstream {
 	std::string data;
 };
 
-int main() {
-	StringBinaryOStream out;
-	out << 3.1415926536;
-	StringBinaryIStream in(out.data);
-	double pi=0.0;
-	in >> pi;
-	std::cout << '"' << pi << std::endl;
-};
+#endif

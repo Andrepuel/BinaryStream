@@ -43,6 +43,15 @@ public:
 	template <typename T>
 	void save(LittleEndian<T> obj);
 
+	BinaryOstream& operator<<(long t) {
+		save(static_cast<int>(t));
+		return *this;
+	}
+	BinaryOstream& operator<<(char t) {
+		save(static_cast<unsigned char>(t));
+		return *this;
+	}
+
 	void save(unsigned long long);
 	void save(unsigned int);
 	void save(unsigned short);
@@ -85,7 +94,9 @@ public:
 	template <typename T>
 	void load(LittleEndian<T&> obj);
 	virtual void load(unsigned char& ch)=0;
-
+	void load(char& ch) {
+		load(reinterpret_cast<unsigned char&>(ch));
+	}
 private:
 	void unsignedToFloat(unsigned int, float&);
 	void unsignedToDouble(unsigned long long, double&);
@@ -311,7 +322,7 @@ unsigned long long BinaryOstream::doubleToUnsigned(double t) {
 		int exponent;
 		double fraction = frexp(t,&exponent);
 		
-		data = ((unsigned long long)(fraction*(1ul<<53)))&0b01111111111111111111111111111111111111111111111111111;
+		data = ((unsigned long long)(fraction*(1ull<<53)))&0b01111111111111111111111111111111111111111111111111111;
 		data |= (unsigned long long)(exponent+1022)<<52;
 		if( minus ) { data |= 0x8000000000000000; }
 	}
@@ -330,7 +341,7 @@ void BinaryIstream::unsignedToDouble(unsigned long long data, double& result) {
 	} else {
 		bool minus = data>>63;
 		int exponent = ((data>>52)&0b11111111111)-1022;
-		double fraction = double((data&0b1111111111111111111111111111111111111111111111111111)|0b10000000000000000000000000000000000000000000000000000)/(1ul<<53);
+		double fraction = double((data&0b1111111111111111111111111111111111111111111111111111)|0b10000000000000000000000000000000000000000000000000000)/(1ull<<53);
 		if( minus ) fraction *= -1.0;
 		result = ldexp(fraction,exponent);
 	}
