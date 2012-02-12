@@ -12,6 +12,10 @@ To make new types serializable you must implement - in a .cpp file, headers are 
 
 Finally, like in `std::cout` and `std::cin` you use the operators `<<` (bitwise shift left) and `>>` (bitwise shift right) respectively to save and load objects.
 
+Deploy
+------
+BinaryStream is just a single pair of hpp/cpp, put the hpp file in your include dir and the cpp in your project.
+
 Primitive Types Representation
 ------------------------------
 ### Integer
