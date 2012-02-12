@@ -141,18 +141,18 @@ __STREAM_SIGNED(LittleEndian,int,0xFFFFFFFF,0x7FFFFFFF)
 __STREAM_SIGNED(BigEndian,short,0xFFFF,0x7FFF)
 __STREAM_SIGNED(LittleEndian,short,0xFFFF,0x7FFF)
 
-void BinaryOstream::save(unsigned long long t) { save(BigEndian<unsigned long long>(t)); }
-template <> void BinaryIstream::load(unsigned long long& t) { load(BigEndian<unsigned long long&>(t)); }
-void BinaryOstream::save(long long t) { save(BigEndian<long long>(t)); }
-template <> void BinaryIstream::load(long long& t) { load(BigEndian<long long&>(t)); }
-void BinaryOstream::save(unsigned int t) { save(BigEndian<unsigned int>(t)); }
-template <> void BinaryIstream::load(unsigned int& t) { load(BigEndian<unsigned int&>(t)); }
-void BinaryOstream::save(int t) { save(BigEndian<int>(t)); }
-template <> void BinaryIstream::load(int& t) { load(BigEndian<int&>(t)); }
-void BinaryOstream::save(unsigned short t) { save(BigEndian<unsigned short>(t)); }
-template <> void BinaryIstream::load(unsigned short& t) { load(BigEndian<unsigned short&>(t)); }
-void BinaryOstream::save(short t) { save(BigEndian<short>(t)); }
-template <> void BinaryIstream::load(short& t) { load(BigEndian<short&>(t)); }
+void BinaryOstream::save(unsigned long long t) { save(LittleEndian<unsigned long long>(t)); }
+template <> void BinaryIstream::load(unsigned long long& t) { load(LittleEndian<unsigned long long&>(t)); }
+void BinaryOstream::save(long long t) { save(LittleEndian<long long>(t)); }
+template <> void BinaryIstream::load(long long& t) { load(LittleEndian<long long&>(t)); }
+void BinaryOstream::save(unsigned int t) { save(LittleEndian<unsigned int>(t)); }
+template <> void BinaryIstream::load(unsigned int& t) { load(LittleEndian<unsigned int&>(t)); }
+void BinaryOstream::save(int t) { save(LittleEndian<int>(t)); }
+template <> void BinaryIstream::load(int& t) { load(LittleEndian<int&>(t)); }
+void BinaryOstream::save(unsigned short t) { save(LittleEndian<unsigned short>(t)); }
+template <> void BinaryIstream::load(unsigned short& t) { load(LittleEndian<unsigned short&>(t)); }
+void BinaryOstream::save(short t) { save(LittleEndian<short>(t)); }
+template <> void BinaryIstream::load(short& t) { load(LittleEndian<short&>(t)); }
 
 static unsigned int floatToUnsigned(float t) {
 	unsigned int data;
