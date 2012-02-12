@@ -10,7 +10,7 @@ The user must extend class BinaryOstream to implement the method `void save(char
 
 To make new types serializable you must implement - in a .cpp file, headers are not needed - the specialized template functions `template <> void BinaryOstream::save(const YourType&)`, and `template <> void BinaryIstream::load(YourType&)`. Inside the implementation of these, you may invoke `save`|`load` with any serializable type.
 
-Finally, like in `std::cout` and `std::cin` you use the operators `<<` (bit-wise shift left) and `>>` (bitwise shift right) respectively to save and load objects.
+Finally, like in `std::cout` and `std::cin` you use the operators `<<` (bitwise shift left) and `>>` (bitwise shift right) respectively to save and load objects.
 
 Primitive Types Representation
 ------------------------------
